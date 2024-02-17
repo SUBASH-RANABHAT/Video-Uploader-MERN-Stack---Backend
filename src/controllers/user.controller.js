@@ -78,7 +78,7 @@ const registerUser = asyncHandler(async (req,res) => {
     )
 })
 
-const LoginUser = asyncHandler(async (req,res) => {
+const loginUser = asyncHandler(async (req,res) => {
     //req.body -> data
     //username or email match   
     //find the user
@@ -126,7 +126,7 @@ const LoginUser = asyncHandler(async (req,res) => {
     )
 })
 
-const LogoutUser = asyncHandler(async(req, res) => {
+const logoutUser = asyncHandler(async(req, res) => {
    await User.findByIdAndUpdate(
         req.user._id,
         {
@@ -259,8 +259,6 @@ const updateUserAvatar = asyncHandler(async(req, res) => {
         throw new ApiError(400, "Avatar file is missing")
     }
 
-    //TODO: delete old image - assignment
-
     const avatar = await uploadOnCloudinary(avatarLocalPath)
 
     if (!avatar.url) {
@@ -321,8 +319,8 @@ const updateUserCoverImage = asyncHandler(async(req, res) => {
 
 export {
     registerUser,
-    LoginUser,
-    LogoutUser,
+    loginUser,
+    logoutUser,
     refreshAccessToken,
     changeCurrentPassword,
     getCurrentUser,
